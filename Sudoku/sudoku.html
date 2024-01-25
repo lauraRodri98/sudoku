@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sudoku</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/sudoku.css">
+</head>
+
+<body>
+    <div class="container d-flex justify-content-center align-items-center">
+        <div class="row sudoku rounded-3  bg-light p-5">
+            <div class="topgridmsg hidden-xs text-center" id="topgridmsg"></div>
+            <h1 class="text-center tituloSudoku">Sudoku</h1>
+            <!-- <div id="playarea" dir="ltr" class="nouserselect" align="center"> -->
+                <table dir="ltr" id="playtable" cellspacing="0" cellpadding="0" border="0" align="center">
+                    <colgroup>
+                        <col class="sudokucell45">
+                        <col class="sudokucell43">
+                        <col class="sudokucell43">
+                        <col class="sudokucell44">
+                        <col class="sudokucell43">
+                        <col class="sudokucell43">
+                        <col class="sudokucell44">
+                        <col class="sudokucell43">
+                        <col class="sudokucell46">
+                    </colgroup>
+                    <tbody>
+                        <tr>
+                            <td id="td0" data-fila="f1" data-columna="c1" data-celda="A" class="cellnormal" >&nbsp;</td>
+                            <td id="td1" data-fila="f1" data-columna="c2" data-celda="A" class="cellnormal">&nbsp;</td>
+                            <td id="td2" data-fila="f1" data-columna="c3" data-celda="A" class="cellnormal" style="border-right: 2px solid black;">&nbsp;</td>
+                            <td id="td3"  data-fila="f1" data-columna="c4" data-celda="B" class="cellnormal" style="border-left: 2px solid black;">&nbsp;</td>
+                            <td id="td4" data-fila="f1" data-columna="c5" data-celda="B" class="cellnormal">&nbsp;</td>
+                            <td id="td5" data-fila="f1" data-columna="c6" data-celda="B" class="cellnormal" style="border-right: 2px solid black;">&nbsp;</td>
+                            <td id="td6" data-fila="f1" data-columna="c7" data-celda="C" class="cellnormal" style="border-left: 2px solid black;">&nbsp;</td>
+                            <td id="td7" data-fila="f1" data-columna="c8" data-celda="C" class="cellnormal">&nbsp;</td>
+                            <td id="td8" data-fila="f1" data-columna="c9" data-celda="C" class="cellnormal">6
+                            </td>
+                        </tr>
+                        <tr>
+                            <td id="td9" data-fila="f2" data-columna="c1" data-celda="A" class="cellnormal">9
+                            </td>
+                            <td id="td10" data-fila="f2" data-columna="c2" data-celda="A" class="cellnormal">&nbsp;</td>
+                            <td id="td11" data-fila="f2" data-columna="c3" data-celda="A" class="cellnormal" style="border-right: 2px solid black;">&nbsp;</td>
+                            <td id="td12" data-fila="f2" data-columna="c4" data-celda="B" class="cellnormal" style="border-left: 2px solid black;">&nbsp;</td>
+                            <td id="td13" data-fila="f2" data-columna="c5" data-celda="B" class="cellnormal">5
+                            </td>
+                            <td id="td14" data-fila="f2" data-columna="c6" data-celda="B" class="cellnormal" style="border-right: 2px solid black;">4
+                            </td>
+                            <td id="td15" data-fila="f2" data-columna="c7" data-celda="C" class="cellnormal" style="border-left: 2px solid black;">3
+                            </td>
+                            <td id="td16" data-fila="f2" data-columna="c8" data-celda="C" class="cellnormal">8
+                            </td>
+                            <td id="td17" data-fila="f2" data-columna="c9" data-celda="C" class="cellnormal">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td id="td18" data-fila="f3" data-columna="c1" data-celda="A" class="cellnormal" style="border-bottom: 2px solid black;">4
+                            </td>
+                            <td id="td19" data-fila="f3" data-columna="c2" data-celda="A" class="cellnormal" style="border-bottom: 2px solid black;">5
+                            </td>
+                            <td id="td20" data-fila="f3" data-columna="c3" data-celda="A" class="cellnormal" style="border-bottom: 2px solid black; border-right: 2px solid black;">3
+                            </td>
+                            <td id="td21" data-fila="f3" data-columna="c4" data-celda="B" class="cellnormal" style="border-bottom: 2px solid black; border-left: 2px solid black;">8
+                            </td>
+                            <td id="td22" data-fila="f3" data-columna="c5" data-celda="B" class="cellnormal" style="border-bottom: 2px solid black;">1
+                            </td>
+                            <td id="td23" data-fila="f3" data-columna="c6" data-celda="B" class="cellnormal" style="border-bottom: 2px solid black; border-right: 2px solid black;">6
+                            </td>
+                            <td id="td24" data-fila="f3" data-columna="c7" data-celda="C" class="cellnormal" style="border-bottom: 2px solid black; border-left: 2px solid black;">9
+                            </td>
+                            <td id="td25" data-fila="f3" data-columna="c8" data-celda="C" class="cellnormal" style="border-bottom: 2px solid black;">&nbsp;</td>
+                            <td id="td26" data-fila="f3" data-columna="c9" data-celda="C" class="cellnormal" style="border-bottom: 2px solid black;">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td id="td27" data-fila="f4" data-columna="c1" data-celda="D" class="cellnormal" style="border-top: 2px solid black;">&nbsp;</td>
+                            <td id="td28" data-fila="f4" data-columna="c2" data-celda="D" class="cellnormal" style="border-top: 2px solid black;">&nbsp;</td>
+                            <td id="td29" data-fila="f4" data-columna="c3" data-celda="D" class="cellnormal" style="border-top: 2px solid black; border-right: 2px solid black;">&nbsp;</td>
+                            <td id="td30" data-fila="f4" data-columna="c4" data-celda="E" class="cellnormal" style="border-top: 2px solid black; border-left: 2px solid black;">&nbsp;</td>
+                            <td id="td31" data-fila="f4" data-columna="c5" data-celda="E"class="cellnormal" style="border-top: 2px solid black;">&nbsp;</td>
+                            <td id="td32" data-fila="f4" data-columna="c6" data-celda="E" class="cellnormal" style="border-top: 2px solid black; border-right: 2px solid black;">&nbsp;</td>
+                            <td id="td33" data-fila="f4" data-columna="c7" data-celda="F" class="cellnormal" style="border-top: 2px solid black; border-left: 2px solid black;">&nbsp;</td>
+                            <td id="td34" data-fila="f4" data-columna="c8" data-celda="F" class="cellnormal" style="border-top: 2px solid black;">5
+                            </td>
+                            <td id="td35" data-fila="f4" data-columna="c9" data-celda="F" class="cellnormal" style="border-top: 2px solid black;">4
+                            </td>
+                        </tr>
+                        <tr>
+                            <td id="td36" data-fila="f5" data-columna="c1" data-celda="D" class="cellnormal">5
+                            </td>
+                            <td id="td37" data-fila="f5" data-columna="c2" data-celda="D" class="cellnormal">4
+                            </td>
+                            <td id="td38" data-fila="f5" data-columna="c3" data-celda="D" class="cellnormal" style="border-right: 2px solid black;">&nbsp;</td>
+                            <td id="td39" data-fila="f5" data-columna="c4" data-celda="E" class="cellnormal" style="border-left: 2px solid black;">&nbsp;</td>
+                            <td id="td40" data-fila="f5" data-columna="c5" data-celda="E" class="cellnormal">&nbsp;</td>
+                            <td id="td41" data-fila="f5" data-columna="c6" data-celda="E" class="cellnormal" style="border-right: 2px solid black;">&nbsp;</td>
+                            <td id="td42" data-fila="f5" data-columna="c7" data-celda="F" class="cellnormal" style="border-left: 2px solid black;">7
+                            </td>
+                            <td id="td43" data-fila="f5" data-columna="c8" data-celda="F" class="cellnormal">&nbsp;</td>
+                            <td id="td44" data-fila="f5" data-columna="c9" data-celda="F" class="cellnormal">3
+                            </td>
+                        </tr>
+                        <tr>
+                            <td id="td45" data-fila="f6" data-columna="c1" data-celda="D" class="cellnormal" style="border-bottom: 2px solid black;">&nbsp;</td>
+                            <td id="td46" data-fila="f6" data-columna="c2" data-celda="D" class="cellnormal" style="border-bottom: 2px solid black;">&nbsp;</td>
+                            <td id="td47" data-fila="f6" data-columna="c3" data-celda="D" class="cellnormal" style="border-bottom: 2px solid black; border-right: 2px solid black;">2
+                            </td>
+                            <td id="td48" data-fila="f6" data-columna="c4" data-celda="E" class="cellnormal" style="border-bottom: 2px solid black; border-left: 2px solid black;">9
+                            </td>
+                            <td id="td49" data-fila="f6" data-columna="c5" data-celda="E" class="cellnormal" style="border-bottom: 2px solid black;">&nbsp;</td>
+                            <td id="td50" data-fila="f6" data-columna="c6" data-celda="E" class="cellnormal" style="border-bottom: 2px solid black; border-right: 2px solid black;">&nbsp;</td>
+                            <td id="td51" data-fila="f6" data-columna="c7" data-celda="F" class="cellnormal" style="border-bottom: 2px solid black; border-left: 2px solid black;">&nbsp;</td>
+                            <td id="td52" data-fila="f6" data-columna="c8" data-celda="F" class="cellnormal" style="border-bottom: 2px solid black;">&nbsp;</td>
+                            <td id="td53" data-fila="f6" data-columna="c9" data-celda="F" class="cellnormal" style="border-bottom: 2px solid black;">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td id="td54" data-fila="f7" data-columna="c1" data-celda="G" class="cellnormal" style="border-top: 2px solid black;">&nbsp;</td>
+                            <td id="td55" data-fila="f7" data-columna="c2" data-celda="G" class="cellnormal" style="border-top: 2px solid black;">&nbsp;</td>
+                            <td id="td56" data-fila="f7" data-columna="c3" data-celda="G" class="cellnormal" style="border-top: 2px solid black; border-right: 2px solid black;">&nbsp;</td>
+                            <td id="td57" data-fila="f7" data-columna="c4" data-celda="H" class="cellnormal" style="border-top: 2px solid black; border-left: 2px solid black;">5
+                            </td>
+                            <td id="td58" data-fila="f7" data-columna="c5" data-celda="H" class="cellnormal" style="border-top: 2px solid black;">9
+                            </td>
+                            <td id="td59" data-fila="f7" data-columna="c6" data-celda="H" class="cellnormal" style="border-top: 2px solid black; border-right: 2px solid black;">&nbsp;</td>
+                            <td id="td60" data-fila="f7" data-columna="c7" data-celda="I" class="cellnormal" style="border-top: 2px solid black; border-left: 2px solid black;">&nbsp;</td>
+                            <td id="td61" data-fila="f7" data-columna="c8" data-celda="I" class="cellnormal" style="border-top: 2px solid black;">7
+                            </td>
+                            <td id="td62" data-fila="f7" data-columna="c9" data-celda="I" class="cellnormal" style="border-top: 2px solid black;">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td id="td63" data-fila="f8" data-columna="c1" data-celda="G" class="cellnormal">&nbsp;</td>
+                            <td id="td64" data-fila="f8" data-columna="c2" data-celda="G" class="cellnormal">&nbsp;</td>
+                            <td id="td65" data-fila="f8" data-columna="c3" data-celda="G" class="cellnormal" style="border-right: 2px solid black;">&nbsp;</td>
+                            <td id="td66" data-fila="f8" data-columna="c4" data-celda="H" class="cellnormal" style="border-left: 2px solid black;">6
+                            </td>
+                            <td id="td67" data-fila="f8" data-columna="c5" data-celda="H" class="cellnormal">&nbsp;</td>
+                            <td id="td68" data-fila="f8" data-columna="c6" data-celda="H" class="cellnormal" style="border-right: 2px solid black;">2
+                            </td>
+                            <td id="td69" data-fila="f8" data-columna="c7" data-celda="I" class="cellnormal" style="border-left: 2px solid black;">&nbsp;</td>
+                            <td id="td70" data-fila="f8" data-columna="c8" data-celda="I" class="cellnormal">&nbsp;</td>
+                            <td id="td71" data-fila="f8" data-columna="c9" data-celda="I" class="cellnormal">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td id="td72" data-fila="f9" data-columna="c1" data-celda="G" class="cellnormal">&nbsp;</td>
+                            <td id="td73" data-fila="f9" data-columna="c2" data-celda="G" class="cellnormal">2
+                            </td>
+                            <td id="td74" data-fila="f9" data-columna="c3" data-celda="G" class="cellnormal" style="border-right: 2px solid black;">&nbsp;</td>
+                            <td id="td75" data-fila="f9" data-columna="c4" data-celda="H" class="cellnormal" style="border-left: 2px solid black;">&nbsp;</td>
+                            <td id="td76" data-fila="f9" data-columna="c5" data-celda="H" class="cellnormal">&nbsp;</td>
+                            <td id="td77" data-fila="f9" data-columna="c6" data-celda="H" class="cellnormal" style="border-right: 2px solid black;">&nbsp;</td>
+                            <td id="td78" data-fila="f9" data-columna="c7" data-celda="I" class="cellnormal" style="border-left: 2px solid black;">&nbsp;</td>
+                            <td id="td79" data-fila="f9" data-columna="c8" data-celda="I" class="cellnormal">1
+                            </td>
+                            <td id="td80" data-fila="f9" data-columna="c9" data-celda="I" class="cellnormal">8
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="container ">
+
+                    <table style="margin-left: -12px; margin-top: 20px;" border="1" id="valuesTable">
+                        <tr >
+                            <td class="btnSeleccionar">&nbsp;</td>
+                            <td class="btnSeleccionar">&nbsp;</td>
+                            <td class="btnSeleccionar">&nbsp;</td>
+                            <td class="btnSeleccionar">&nbsp;</td>
+                            <td class="btnSeleccionar">&nbsp;</td>
+                            <td class="btnSeleccionar">&nbsp;</td>
+                            <td class="btnSeleccionar">&nbsp;</td>
+                            <td class="btnSeleccionar">&nbsp;</td>
+                            <td class="btnSeleccionar">&nbsp;</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div class="row justify-content-center">
+                    <div class="justify-content-center d-flex">
+                        <p><button class="boton" id="nuevoSudoku">Otra partida</button></p>
+                    </div>   
+                    <div class="row">
+                        <div class="col-4">
+                            <button class="botonN" id="BtnFacil">Nivel fácil</button>
+                        </div>
+                        <div class="col-4">
+                            <button class="botonN" id="BtnMedio">Nivel medio</button>
+                        </div>
+                        <div class="col-4">
+                            <button class="botonN" id="BtnDificil">Nivel difícil</button>
+                        </div>                      
+                    </div> 
+                </div>
+                <div class="row mt-2">
+                    <div class="col-12 justify-content-between d-flex">
+                        <button class="botonV3" id="comprobar">Comprobar</button>
+                        <button class="botonV3" id="rendirse">Rendirse</button>
+                    </div>
+                    <div class="justify-content-center">
+                        <p id="mensajeSudoku"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+      
+   
+    <script src="js/sudoku.js"></script>
+</body>
+
+</html>
